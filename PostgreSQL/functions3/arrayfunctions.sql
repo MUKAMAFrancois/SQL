@@ -2,7 +2,10 @@
 
 ### 1. Array Functions
 
-PostgreSQL provides a comprehensive set of functions to work with array data types. These functions allow you to manipulate and query arrays stored in your database. Here, we will cover some of the most commonly used array functions with real-world examples and explanations.
+-- PostgreSQL provides a comprehensive set of functions to work with array data types. 
+-- These functions allow you to manipulate and query arrays stored in your database.
+--  Here, we will cover some of the most 
+-- commonly used array functions with real-world examples and explanations.
 
 #### `array_append()`
 
@@ -66,7 +69,7 @@ The `unnest()` function expands an array to a set of rows.
 
 - **Example:**
   ```sql
-  SELECT unnest('{1, 2, 3, 4}') AS element;
+  SELECT unnest('{1, 2, 3, 4}'::integer[]) AS element;
   ```
 
   - **Explanation:**
@@ -74,41 +77,42 @@ The `unnest()` function expands an array to a set of rows.
 
 ### Real-World Example: Managing Product Categories
 
-Let s consider a table `products` that stores information about products, including their categories as an array:
+Let s consider a table `products` that stores information about products, 
+including their categories as an array:
 
-```sql
+
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     categories TEXT[] NOT NULL
 );
-```
 
-1. **Insert Sample Data:**
-   ```sql
+
+-- 1. **Insert Sample Data:**
+   
    INSERT INTO products (name, categories) VALUES 
    ('Laptop', '{"Electronics", "Computers"}'),
    ('Smartphone', '{"Electronics", "Mobile"}'),
    ('Tablet', '{"Electronics", "Computers", "Mobile"}');
-   ```
+   
 
-2. **Append a New Category to Products:**
-   ```sql
+-- 2. **Append a New Category to Products:**
+   
    UPDATE products
    SET categories = array_append(categories, 'Gadgets')
    WHERE name = 'Laptop';
-   ```
+   
 
    - **Explanation:**
      - This query appends the category "Gadgets" to the categories of the product "Laptop".
 
-3. **Concatenate Category Arrays of Two Products:**
-   ```sql
+-- 3. **Concatenate Category Arrays of Two Products:**
+   
    SELECT array_cat(
        (SELECT categories FROM products WHERE name = 'Laptop'),
        (SELECT categories FROM products WHERE name = 'Smartphone')
    ) AS combined_categories;
-   ```
+   
 
    - **Explanation:**
      - This query concatenates the category arrays of "Laptop" and "Smartphone" into a single array.

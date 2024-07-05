@@ -108,29 +108,29 @@ The `MAX()` function returns the largest value of a numeric column.
 
 ### Real-World Example: Managing Order Data
 
-Lets consider the `orders` table from the previous example to demonstrate the use of aggregate functions.
+-- Let us consider the `orders` table from the previous example to demonstrate the use of aggregate functions.
 
-1. **Create Table:**
+-- 1. **Create Table:**
 
-   ```sql
+   
    CREATE TABLE orders (
        id SERIAL PRIMARY KEY,
        customer_name VARCHAR(100) NOT NULL,
        order_amount NUMERIC(10, 2) NOT NULL,
        discount NUMERIC(5, 2)
    );
-   ```
+   
 
 2. **Insert Sample Data:**
 
-   ```sql
+   
    INSERT INTO orders (customer_name, order_amount, discount) VALUES 
    ('Alice', 150.00, 10.00),
    ('Bob', 200.00, NULL),
    ('Charlie', 300.00, 15.00),
    ('David', 50.00, 5.00),
    ('Eve', 400.00, 20.00);
-   ```
+   
 
 3. **Calculate Total Sales:**
 
@@ -184,15 +184,16 @@ Lets consider the `orders` table from the previous example to demonstrate the us
 
 ### Using Aggregate Functions with `GROUP BY`
 
-The `GROUP BY` clause groups rows that have the same values into summary rows, such as "find the number of customers in each country". 
+The `GROUP BY` clause groups rows that 
+have the same values into summary rows, such as "find the number of customers in each country". 
 
 - **Syntax:**
-  ```sql
+  
   SELECT column_name, aggregate_function(column_name)
   FROM table_name
   WHERE condition
   GROUP BY column_name;
-  ```
+  
 
 - **Example:**
   ```sql
@@ -206,7 +207,7 @@ The `GROUP BY` clause groups rows that have the same values into summary rows, s
 
 ### Real-World Example with `GROUP BY`
 
-Let's consider the same `orders` table to demonstrate the use of aggregate functions with the `GROUP BY` clause.
+Let us consider the same `orders` table to demonstrate the use of aggregate functions with the `GROUP BY` clause.
 
 1. **Calculate Total Sales by Customer:**
 

@@ -2,13 +2,16 @@
 
 ### 1. Introduction to Conditional Expressions
 
-Conditional expressions allow you to implement logic within your SQL queries. PostgreSQL provides various conditional expressions that can be used to control the flow of data retrieval and manipulation.
+-- Conditional expressions allow you to implement logic within your SQL queries.
+--  PostgreSQL provides various conditional expressions that can be used
+-- to control the flow of data retrieval and manipulation.
 
 ### 2. Types of Conditional Expressions
 
 #### `CASE`
 
-The `CASE` expression is a versatile and widely used conditional expression in SQL. It allows you to create conditions and return specific values based on those conditions.
+The `CASE` expression is a versatile and widely used conditional expression in SQL. 
+It allows you to create conditions and return specific values based on those conditions.
 
 - **Syntax:**
   ```sql
@@ -32,11 +35,14 @@ The `CASE` expression is a versatile and widely used conditional expression in S
   ```
 
   - **Explanation:**
-    - This query classifies users into age groups: 'Minor', 'Adult', or 'Senior' based on their age.
+    - This query classifies users into age groups: 
+    'Minor', 'Adult', or 'Senior' based on their age.
 
 #### `COALESCE`
 
 The `COALESCE` function returns the first non-null value in a list of arguments.
+-- COALESCE in PostgreSQL is a function that returns the first non-null value in a list of expressions.
+--  It is very useful for handling null values in queries.
 
 - **Syntax:**
   ```sql
@@ -54,7 +60,8 @@ The `COALESCE` function returns the first non-null value in a list of arguments.
 
 #### `NULLIF`
 
-The `NULLIF` function returns null if two specified expressions are equal. Otherwise, it returns the first expression.
+The `NULLIF` function returns null if two specified expressions are equal.
+Otherwise, it returns the first expression.
 
 - **Syntax:**
   ```sql
@@ -88,6 +95,10 @@ The `GREATEST` function returns the largest value from a list of expressions, wh
 
   - **Explanation:**
     - This query returns the highest score from three different score columns for each user.
+
+
+
+
 
 ### Real-World Example: Managing Order Data
 

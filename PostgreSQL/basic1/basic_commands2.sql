@@ -44,6 +44,8 @@ ALTER TABLE employees ALTER COLUMN name TYPE VARCHAR(150);
 
 -- Rename an index
 ALTER INDEX idx_employee_name RENAME TO idx_emp_name;
+-- Rename column
+ALTER TABLE books RENAME COLUMN cost TO "Cost ($)";
 
 -- make a field nullable
 ALTER TABLE Employees ALTER COLUMN manager_id DROP NOT NULL;
