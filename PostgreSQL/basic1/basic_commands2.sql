@@ -39,6 +39,7 @@ ALTER DATABASE employee_management SET timezone TO 'UTC';
 -- Add a column to a table
 ALTER TABLE employees ADD COLUMN department VARCHAR(50);
 
+
 -- Change a column's data type
 ALTER TABLE employees ALTER COLUMN name TYPE VARCHAR(150);
 
@@ -46,6 +47,10 @@ ALTER TABLE employees ALTER COLUMN name TYPE VARCHAR(150);
 ALTER INDEX idx_employee_name RENAME TO idx_emp_name;
 -- Rename column
 ALTER TABLE books RENAME COLUMN cost TO "Cost ($)";
+
+-- Rename a table name:
+
+ALTER TABLE location RENAME TO Locations;
 
 -- make a field nullable
 ALTER TABLE Employees ALTER COLUMN manager_id DROP NOT NULL;
