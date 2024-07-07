@@ -5,17 +5,8 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "postgres",
-            "database": "postgres",
-            "username": "postres"
-        },
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
             "name": "localpsql",
-            "database": "test_db",
+            "database": "learnsql",
             "username": "postgres"
         }
     ]
