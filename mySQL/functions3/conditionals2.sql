@@ -72,7 +72,7 @@ IF (payment_status = 'paid',
 )
  FROM orders;
 
---4. coalsce. it handles null values
+--4. coalsce. it handles null values =================
 
 select ord.order_id,
 ord.order_date,
@@ -83,11 +83,12 @@ ord.total_amount - COALESCE(ord.discount_applied,0) as final_amount
 from orders ord;
 
 
--- Multiple conditions , complex logical conditions
+-- Multiple conditions , complex logical conditions==========================
 
 -- -> Order status
 
 -- A. Order status with multiple conditions
+-- Order status with multiple conditions
 SELECT 
     order_id,
     total_amount,
@@ -101,7 +102,74 @@ SELECT
     END as order_status
 FROM orders;
 
--- B. Shipping cost calculator.
+-- Shipping cost calculator
+SELECT 
+    order_id,
+    total_amount,
+    shipping_method,
+    region,
+    CASE 
+        WHEN shipping_method = 'express' THEN
+            CASE region
+                WHEN 'North' THEN 20.00
+                WHEN 'South' THEN 25.00
+                WHEN 'East' THEN 22.00
+                WHEN 'West' THEN 28.00
+                ELSE 30.00
+            END
+        ELSE
+            CASE region
+                WHEN 'North' THEN 10.00
+                WHEN 'South' THEN 12.00
+                WHEN 'East' THEN 11.00
+                WHEN 'West' THEN 13.00
+                ELSE 15.00
+            END
+    END as shipping_cost
+FROM orders;
+
+
+-- Conditional Aggregation======================
+
+-- Summary with conditional counts
+SELECT 
+    COUNT(*) as total_orders,
+    SUM(CASE WHEN payment_status = 'paid' THEN 1 ELSE 0 END) as paid_orders,
+    SUM(CASE WHEN payment_status = 'pending' THEN 1 ELSE 0 END) as pending_orders,
+    SUM(CASE WHEN payment_status = 'failed' THEN 1 ELSE 0 END) as failed_orders,
+    AVG(CASE WHEN shipping_method = 'express' THEN total_amount ELSE NULL END) as avg_express_order_amount
+FROM orders;
+
+
+-- Regional performance analysis
+SELECT 
+    region,
+    COUNT(*) as total_orders,
+    SUM(CASE WHEN total_amount > 200 THEN 1 ELSE 0 END) as large_orders,
+    AVG(CASE WHEN payment_status = 'paid' THEN total_amount ELSE NULL END) as avg_paid_amount
+FROM orders
+GROUP BY region;
+
+
+-- Update shipping method based on conditions======================
+UPDATE orders
+SET shipping_method = 
+    CASE 
+        WHEN total_amount > 500 THEN 'express'
+        WHEN payment_status = 'failed' THEN 'pending'
+        ELSE shipping_method
+    END
+WHERE order_date = CURRENT_DATE;
+
+-- Apply discount based on conditions
+UPDATE orders
+SET discount_applied = 
+    CASE 
+        WHEN total_amount >= 500 THEN total_amount * 0.1
+        WHEN total_amount >= 200 THEN total_amount * 0.05
+        ELSE COALESCE(discount_applied, 0)
+    END;
+
 
 
 
