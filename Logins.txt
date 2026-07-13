@@ -1,0 +1,14 @@
+PostrgeSQL
+============
+
+port: 5433
+username: postgres
+host: localhost
+password: 805206
+
+
+MySQL
+=============
+
+port: 3306
+password: x8DT!/u7;y}g|t8.67<5.W£Z
